@@ -13,6 +13,9 @@
 		A07F6A132716165F00012684 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A07F6A112716165F00012684 /* LaunchScreen.storyboard */; };
 		A07F6A21271625C200012684 /* UIStackView + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A07F6A20271625C200012684 /* UIStackView + Extension.swift */; };
 		A07F6A2327162C4600012684 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A07F6A2227162C4600012684 /* SignUpViewController.swift */; };
+		A07F6A252718372A00012684 /* AlbumsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A07F6A242718372A00012684 /* AlbumsViewController.swift */; };
+		A07F6A27271837AD00012684 /* AlbumsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A07F6A26271837AD00012684 /* AlbumsTableViewCell.swift */; };
+		A07F6A29271838EB00012684 /* UIViewController + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A07F6A28271838EB00012684 /* UIViewController + Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +27,9 @@
 		A07F6A142716165F00012684 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A07F6A20271625C200012684 /* UIStackView + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView + Extension.swift"; sourceTree = "<group>"; };
 		A07F6A2227162C4600012684 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		A07F6A242718372A00012684 /* AlbumsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumsViewController.swift; sourceTree = "<group>"; };
+		A07F6A26271837AD00012684 /* AlbumsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumsTableViewCell.swift; sourceTree = "<group>"; };
+		A07F6A28271838EB00012684 /* UIViewController + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +80,7 @@
 				A07F6A1B27161ACD00012684 /* Cells */,
 				A07F6A0A2716165D00012684 /* AuthViewController.swift */,
 				A07F6A2227162C4600012684 /* SignUpViewController.swift */,
+				A07F6A242718372A00012684 /* AlbumsViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -81,6 +88,7 @@
 		A07F6A1B27161ACD00012684 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				A07F6A26271837AD00012684 /* AlbumsTableViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -111,6 +119,7 @@
 			isa = PBXGroup;
 			children = (
 				A07F6A20271625C200012684 /* UIStackView + Extension.swift */,
+				A07F6A28271838EB00012684 /* UIViewController + Extension.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -186,9 +195,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				A07F6A21271625C200012684 /* UIStackView + Extension.swift in Sources */,
+				A07F6A29271838EB00012684 /* UIViewController + Extension.swift in Sources */,
 				A07F6A0B2716165D00012684 /* AuthViewController.swift in Sources */,
 				A07F6A2327162C4600012684 /* SignUpViewController.swift in Sources */,
 				A07F6A072716165D00012684 /* AppDelegate.swift in Sources */,
+				A07F6A252718372A00012684 /* AlbumsViewController.swift in Sources */,
+				A07F6A27271837AD00012684 /* AlbumsTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

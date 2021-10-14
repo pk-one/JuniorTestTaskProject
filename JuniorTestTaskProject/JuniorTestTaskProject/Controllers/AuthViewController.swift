@@ -61,7 +61,7 @@ class AuthViewController: UIViewController {
         button.setTitle("Войти", for: .normal)
         button.tintColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         button.layer.cornerRadius = 10
-//        button.addTarget(self, action: #selector(signInButtonTapped), for: .touchUpInside)
+        button.addTarget(self, action: #selector(signInButtonTapped), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -108,9 +108,13 @@ class AuthViewController: UIViewController {
         self.present(signUpViewController, animated: true)
     }
     
+    @objc func signInButtonTapped() {
+        let navigationVC = UINavigationController(rootViewController: AlbumsViewController())
+        navigationVC.modalPresentationStyle = .fullScreen
+        self.present(navigationVC, animated: true)
+    }
     
 }
-
 
 extension AuthViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
