@@ -8,7 +8,7 @@
 import UIKit
 
 class AlbumsViewController: UIViewController {
-
+    
     private let tableView: UITableView = {
         let tableView = UITableView()
         tableView.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
@@ -28,7 +28,7 @@ class AlbumsViewController: UIViewController {
         setupSearchController()
         setConstraints()
     }
-
+    
     private func setupViews() {
         view.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         view.addSubview(tableView)
@@ -55,8 +55,8 @@ class AlbumsViewController: UIViewController {
     }
     
     @objc private func userInfoButtonTapped() {
-//        let userInfoViewController = UserInfoViewController()
-//        navigationController?.pushViewController(userInfoViewController, animated: true)
+        let userInfoViewController = UserInfoViewController()
+        navigationController?.pushViewController(userInfoViewController, animated: true)
     }
 }
 
@@ -80,8 +80,8 @@ extension AlbumsViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let detailAlbumViewController = DetailAlbumViewController()
-//        navigationController?.pushViewController(detailAlbumViewController, animated: true)
+        let detailAlbumViewController = DetailAlbumViewController()
+        navigationController?.pushViewController(detailAlbumViewController, animated: true)
     }
 }
 

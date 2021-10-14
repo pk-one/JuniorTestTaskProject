@@ -97,12 +97,12 @@ class AuthViewController: UIViewController {
         backgroundView.addSubview(buttonsStackView)
         
     }
-
+    
     private func setupDelegate() {
         emailTextField.delegate = self
         passwordTextField.delegate = self
     }
-
+    
     @objc func signUpButtonTapped() {
         let signUpViewController = SignUpViewController()
         self.present(signUpViewController, animated: true)

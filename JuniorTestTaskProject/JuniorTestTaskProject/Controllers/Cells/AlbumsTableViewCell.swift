@@ -8,7 +8,7 @@
 import UIKit
 
 class AlbumsTableViewCell: UITableViewCell {
-
+    
     private let albumLogo: UIImageView = {
         let imageView = UIImageView()
         imageView.backgroundColor = .red
@@ -24,7 +24,7 @@ class AlbumsTableViewCell: UITableViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-
+    
     private let artistNameLabel: UILabel = {
         let label = UILabel()
         label.text = "Имя исполнителя"

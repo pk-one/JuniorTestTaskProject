@@ -127,7 +127,7 @@ class SignUpViewController: UIViewController {
     
     private var elementsStackView = UIStackView()
     private let birthdayDatePicker = UIDatePicker()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -139,7 +139,7 @@ class SignUpViewController: UIViewController {
     
     private func setupViews() {
         title = "SignUp"
-    
+        
         elementsStackView = UIStackView(arrangedSubviews: [firstNameTextField,
                                                            firstNameValidLabel,
                                                            secondNameTextField,
@@ -155,13 +155,13 @@ class SignUpViewController: UIViewController {
                                         axis: .vertical,
                                         spacing: 10,
                                         distribution: .fillProportionally)
-    
-    view.addSubview(scrollView)
-    scrollView.addSubview(backgroundView)
-    backgroundView.addSubview(elementsStackView)
-    backgroundView.addSubview(registrationLabel)
-    backgroundView.addSubview(signUpButton)
-
+        
+        view.addSubview(scrollView)
+        scrollView.addSubview(backgroundView)
+        backgroundView.addSubview(elementsStackView)
+        backgroundView.addSubview(registrationLabel)
+        backgroundView.addSubview(signUpButton)
+        
     }
     
     private func setupDelegate() {
