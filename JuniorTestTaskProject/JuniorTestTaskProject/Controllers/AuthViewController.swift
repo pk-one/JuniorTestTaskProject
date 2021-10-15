@@ -115,22 +115,26 @@ class AuthViewController: UIViewController {
     
     @objc func signInButtonTapped() {
         
-        let email = emailTextField.text ?? ""
-        let password = passwordTextField.text ?? ""
-        let user = findUserInDataBase(email: email)
+        let navigationVC = UINavigationController(rootViewController: AlbumsViewController())
+        navigationVC.modalPresentationStyle = .fullScreen
+        self.present(navigationVC, animated: true)
         
-        if user == nil {
-            show(title: "Ошибка", message: "Пользователь с таким email не найден.", action: false)
-        } else if user?.password == password {
-            let navigationVC = UINavigationController(rootViewController: AlbumsViewController())
-            navigationVC.modalPresentationStyle = .fullScreen
-            self.present(navigationVC, animated: true)
-            
-            guard let activeUser = user else { return }
-            DataBase.shared.saveActiveUser(user: activeUser)
-        } else {
-            show(title: "Ошибка", message: "Неверный пароль", action: false)
-        }
+//        let email = emailTextField.text ?? ""
+//        let password = passwordTextField.text ?? ""
+//        let user = findUserInDataBase(email: email)
+//
+//        if user == nil {
+//            show(title: "Ошибка", message: "Пользователь с таким email не найден.", action: false)
+//        } else if user?.password == password {
+//            let navigationVC = UINavigationController(rootViewController: AlbumsViewController())
+//            navigationVC.modalPresentationStyle = .fullScreen
+//            self.present(navigationVC, animated: true)
+//
+//            guard let activeUser = user else { return }
+//            DataBase.shared.saveActiveUser(user: activeUser)
+//        } else {
+//            show(title: "Ошибка", message: "Неверный пароль", action: false)
+//        }
     }
     
     private func findUserInDataBase(email: String) -> User? {
@@ -143,7 +147,6 @@ class AuthViewController: UIViewController {
         }
         return nil
     }
-    
 }
 
 extension AuthViewController: UITextFieldDelegate {

@@ -22,6 +22,9 @@
 		A07F6A312718D84900012684 /* String + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A07F6A302718D84900012684 /* String + Extension.swift */; };
 		A07F6A342719DF6900012684 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A07F6A332719DF6900012684 /* UserDefaultsManager.swift */; };
 		A07F6A372719E05700012684 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A07F6A362719E05700012684 /* UserModel.swift */; };
+		A07F6A39271A1A5C00012684 /* AlbumModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A07F6A38271A1A5C00012684 /* AlbumModel.swift */; };
+		A07F6A3C271A1B8400012684 /* NetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A07F6A3B271A1B8400012684 /* NetworkRequest.swift */; };
+		A07F6A3E271A1D7D00012684 /* NetworkDataFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = A07F6A3D271A1D7D00012684 /* NetworkDataFetcher.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +45,9 @@
 		A07F6A302718D84900012684 /* String + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String + Extension.swift"; sourceTree = "<group>"; };
 		A07F6A332719DF6900012684 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 		A07F6A362719E05700012684 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		A07F6A38271A1A5C00012684 /* AlbumModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumModel.swift; sourceTree = "<group>"; };
+		A07F6A3B271A1B8400012684 /* NetworkRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequest.swift; sourceTree = "<group>"; };
+		A07F6A3D271A1D7D00012684 /* NetworkDataFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDataFetcher.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,10 +83,10 @@
 				A07F6A1E27161B2E00012684 /* Applications */,
 				A07F6A1A27161ABB00012684 /* Controllers */,
 				A07F6A352719E03D00012684 /* Models */,
+				A07F6A3A271A1B7000012684 /* Network */,
 				A07F6A322719DF4B00012684 /* Services */,
 				A07F6A1C27161B0D00012684 /* Extensions */,
 				A07F6A1D27161B1A00012684 /* Resourses */,
-				A07F6A062716165D00012684 /* AppDelegate.swift */,
 				A07F6A0F2716165F00012684 /* Assets.xcassets */,
 				A07F6A112716165F00012684 /* LaunchScreen.storyboard */,
 				A07F6A142716165F00012684 /* Info.plist */,
@@ -129,6 +135,7 @@
 		A07F6A1E27161B2E00012684 /* Applications */ = {
 			isa = PBXGroup;
 			children = (
+				A07F6A062716165D00012684 /* AppDelegate.swift */,
 			);
 			path = Applications;
 			sourceTree = "<group>";
@@ -154,8 +161,18 @@
 			isa = PBXGroup;
 			children = (
 				A07F6A362719E05700012684 /* UserModel.swift */,
+				A07F6A38271A1A5C00012684 /* AlbumModel.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		A07F6A3A271A1B7000012684 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				A07F6A3B271A1B8400012684 /* NetworkRequest.swift */,
+				A07F6A3D271A1D7D00012684 /* NetworkDataFetcher.swift */,
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -232,9 +249,12 @@
 				A07F6A29271838EB00012684 /* UIViewController + Extension.swift in Sources */,
 				A07F6A342719DF6900012684 /* UserDefaultsManager.swift in Sources */,
 				A07F6A0B2716165D00012684 /* AuthViewController.swift in Sources */,
+				A07F6A3C271A1B8400012684 /* NetworkRequest.swift in Sources */,
 				A07F6A2327162C4600012684 /* SignUpViewController.swift in Sources */,
 				A07F6A372719E05700012684 /* UserModel.swift in Sources */,
 				A07F6A072716165D00012684 /* AppDelegate.swift in Sources */,
+				A07F6A3E271A1D7D00012684 /* NetworkDataFetcher.swift in Sources */,
+				A07F6A39271A1A5C00012684 /* AlbumModel.swift in Sources */,
 				A07F6A2D2718A99800012684 /* SongsCollectionViewCell.swift in Sources */,
 				A07F6A2B271843D600012684 /* DetailAlbumViewController.swift in Sources */,
 				A07F6A312718D84900012684 /* String + Extension.swift in Sources */,
