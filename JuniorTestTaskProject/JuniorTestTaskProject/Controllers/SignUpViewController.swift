@@ -128,6 +128,13 @@ class SignUpViewController: UIViewController {
     private var elementsStackView = UIStackView()
     private let birthdayDatePicker = UIDatePicker()
     
+    let validSymbol = "\u{2713}"
+    
+    let nameValidType: String.ValidTypes = .name
+    let emailValidType: String.ValidTypes = .email
+//    let phoneValidType: String.ValidTypes = .phone
+    let passwordValidType: String.ValidTypes = .password
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -190,11 +197,10 @@ class SignUpViewController: UIViewController {
     @objc private func signUpButtonTapped() {
         print("Нажата кнопка регистрация")
     }
-}
-
-extension SignUpViewController: UITextFieldDelegate {
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        let text = (firstNameTextField.text ?? "") + string
+    
+    private func setTextField(textField: UITextField, label: UILabel, validType: String.ValidTypes, validMessage: String, wrongMessage: String, string: String, range: NSRange) {
+        
+        let text = (textField.text ?? "") + string
         let result: String
         
         if range.length == 1 {
@@ -203,8 +209,108 @@ extension SignUpViewController: UITextFieldDelegate {
         } else {
             result = text
         }
+        textField.text = result
         
-        firstNameTextField.text = result
+        if result.isValid(validType: validType) {
+            label.text = validMessage
+            label.textColor = #colorLiteral(red: 0.2039215686, green: 0.7803921569, blue: 0, alpha: 1)
+        } else {
+            label.text = wrongMessage
+            label.textColor = #colorLiteral(red: 0.5783785502, green: 0.01568627544, blue: 0.1294117719, alpha: 1)
+        }
+    }
+    
+    private func setPhoneNumberMask(textField: UITextField, mask: String, string: String, range: NSRange) -> String {
+        let text = textField.text ?? ""
+        let phone = (text as NSString).replacingCharacters(in: range, with: string)
+        let number = phone.replacingOccurrences(of: "[^0-9]", with: "", options: .regularExpression)
+        var result = ""
+        var index = number.startIndex
+
+        
+        for character in mask where index < number.endIndex {
+            if character == "X" {
+                result.append(number[index])
+                index = number.index(after: index)
+            } else {
+                result.append(character)
+            }
+        }
+        
+        if result.count == 18 {
+            phoneValidLabel.text = validSymbol
+            phoneValidLabel.textColor = #colorLiteral(red: 0.2039215686, green: 0.7803921569, blue: 0, alpha: 1)
+        } else {
+            phoneValidLabel.text = "Неверный формат..."
+            phoneValidLabel.textColor = #colorLiteral(red: 0.5783785502, green: 0.01568627544, blue: 0.1294117719, alpha: 1)
+        }
+        
+        return result
+    }
+    
+    private func ageIsValid() -> Bool {
+        let calendar = NSCalendar.current
+        let dateNow = Date()
+        let birthday = birthdayDatePicker.date
+        
+        let age = calendar.dateComponents([.year], from: birthday, to: dateNow)
+        let ageYear = age.year
+        guard let ageUser = ageYear else { return false }
+        return (ageUser < 18 ? false : true)
+    }
+}
+
+extension SignUpViewController: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+       
+        switch textField {
+        case firstNameTextField: setTextField(textField: firstNameTextField,
+                                              label: firstNameValidLabel,
+                                              validType: nameValidType,
+                                              validMessage: validSymbol,
+                                              wrongMessage: "а-я, А-Я, мин. 1 символ",
+                                              string: string,
+                                              range: range)
+            
+        case secondNameTextField: setTextField(textField: secondNameTextField,
+                                              label: secondNameValidLabel,
+                                              validType: nameValidType,
+                                              validMessage: validSymbol,
+                                              wrongMessage: "а-я, А-Я, мин. 1 символ",
+                                              string: string,
+                                              range: range)
+            
+        case emailTextField: setTextField(textField: emailTextField,
+                                              label: emailValidLabel,
+                                              validType: emailValidType,
+                                              validMessage: validSymbol,
+                                              wrongMessage: "Неверный формат...",
+                                              string: string,
+                                              range: range)
+            
+//        case phoneNumberTextField: setTextField(textField: phoneNumberTextField,
+//                                              label: phoneValidLabel,
+//                                              validType: phoneValidType,
+//                                              validMessage: validSymbol,
+//                                              wrongMessage: "Неверный формат...",
+//                                              string: string,
+//                                              range: range)
+            
+        case phoneNumberTextField: phoneNumberTextField.text = setPhoneNumberMask(textField: phoneNumberTextField,
+                                                                                  mask: "+X (XXX) XXX-XX-XX",
+                                                                                  string: string,
+                                                                                  range: range)
+            
+        case passwordTextField: setTextField(textField: passwordTextField,
+                                              label: passwordValidLabel,
+                                              validType: passwordValidType,
+                                              validMessage: validSymbol,
+                                              wrongMessage: "По 1 сим.: a-z, A-Z, 0-9 и мин. длинна: 6 сим.",
+                                              string: string,
+                                              range: range)
+        default:
+            break
+        }
         
         return false
     }
