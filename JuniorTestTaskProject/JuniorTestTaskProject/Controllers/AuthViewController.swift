@@ -114,9 +114,31 @@ class AuthViewController: UIViewController {
     }
     
     @objc func signInButtonTapped() {
-        let navigationVC = UINavigationController(rootViewController: AlbumsViewController())
-        navigationVC.modalPresentationStyle = .fullScreen
-        self.present(navigationVC, animated: true)
+        
+        let email = emailTextField.text ?? ""
+        let password = passwordTextField.text ?? ""
+        let user = findUserInDataBase(email: email)
+        
+        if user == nil {
+            show(title: "Ошибка", message: "Пользователь с таким email не найден.", action: false)
+        } else if user?.password == password {
+            let navigationVC = UINavigationController(rootViewController: AlbumsViewController())
+            navigationVC.modalPresentationStyle = .fullScreen
+            self.present(navigationVC, animated: true)
+        } else {
+            show(title: "Ошибка", message: "Неверный пароль", action: false)
+        }
+    }
+    
+    private func findUserInDataBase(email: String) -> User? {
+        let data = DataBase.shared.users
+        
+        for user in data {
+            if user.email == email {
+                return user
+            }
+        }
+        return nil
     }
     
 }
