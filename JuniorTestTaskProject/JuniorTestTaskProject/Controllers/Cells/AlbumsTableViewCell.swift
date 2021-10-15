@@ -72,6 +72,31 @@ class AlbumsTableViewCell: UITableViewCell {
         self.addSubview(stackView)
     }
     
+    func configure(album: Album) {
+        
+        if let urlString = album.artworkUrl100 {
+            NetworkRequest.shared.requestData(urlString: urlString) { [weak self] result in
+                guard let self = self else { return }
+                switch result {
+                case .success(let data):
+                    let image = UIImage(data: data)
+                    self.albumLogo.image = image
+                case .failure(let error):
+                    self.albumLogo.image = UIImage(named: "no-image_available")
+                    print("No album logo" + error.localizedDescription)
+                }
+            }
+
+        } else {
+            albumLogo.image = UIImage(named: "no-image_available")
+        }
+        
+        
+        albumNameLabel.text = album.collectionName
+        artistNameLabel.text = album.artistName
+        trackCountLabel.text = "\(album.trackCount) композиция(-ий)"
+    }
+    
     private func setContstraints() {
         NSLayoutConstraint.activate([
             albumLogo.centerYAnchor.constraint(equalTo: self.centerYAnchor),

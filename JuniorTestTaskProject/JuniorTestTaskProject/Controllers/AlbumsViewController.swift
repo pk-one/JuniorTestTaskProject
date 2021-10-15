@@ -19,6 +19,9 @@ class AlbumsViewController: UIViewController {
     
     private let searchController = UISearchController(searchResultsController: nil)
     
+    var albums = [Album]()
+    var timer: Timer?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -27,6 +30,7 @@ class AlbumsViewController: UIViewController {
         setNavigationBar()
         setupSearchController()
         setConstraints()
+
     }
     
     private func setupViews() {
@@ -58,17 +62,33 @@ class AlbumsViewController: UIViewController {
         let userInfoViewController = UserInfoViewController()
         navigationController?.pushViewController(userInfoViewController, animated: true)
     }
+    
+    private func fetchAlbums(albumName: String) {
+        let urlString = "https://itunes.apple.com/search?term=\(albumName)&entity=album&attribute=albumTerm"
+        
+        NetworkDataFetcher.shared.fetchAlbum(urlString: urlString) { [weak self] albumModel, error in
+            if error == nil {
+                guard let albumModel = albumModel, let self = self else { return }
+                self.albums = albumModel.results
+                print(self.albums)
+                self.tableView.reloadData()
+            } else {
+                print(error?.localizedDescription)
+            }
+        }
+    }
 }
 
 //MARK: - UITableViewDataSource
 extension AlbumsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        albums.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! AlbumsTableViewCell
-        
+        let album = albums[indexPath.row]
+        cell.configure(album: album)
         return cell
     }
 }
@@ -88,7 +108,13 @@ extension AlbumsViewController: UITableViewDelegate {
 //MARK: - UISearchBarDelegate
 extension AlbumsViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        print(searchText)
+        if !searchText.isEmpty {
+            timer?.invalidate()
+            timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { [weak self] _ in
+                guard let self = self else { return }
+                self.fetchAlbums(albumName: searchText)
+            })
+        }
     }
 }
 
