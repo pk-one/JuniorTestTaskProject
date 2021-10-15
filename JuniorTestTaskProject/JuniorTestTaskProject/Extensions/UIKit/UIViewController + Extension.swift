@@ -17,4 +17,19 @@ extension UIViewController {
         let menuBarItem = UIBarButtonItem(customView: button)
         return menuBarItem
     }
+    
+    func show(title: String, message: String, action: Bool) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        if action == true {
+            let okButton = UIAlertAction(title: "Ок", style: .default) { action in
+                self.dismiss(animated: true, completion: nil)
+            }
+            alertController.addAction(okButton)
+        } else if action == false {
+            let okButton = UIAlertAction(title: "Ок", style: .default, handler: nil)
+            alertController.addAction(okButton)
+        }
+        
+        present(alertController, animated: true, completion: nil)
+    }
 }
